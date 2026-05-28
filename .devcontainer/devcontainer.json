@@ -1,0 +1,38 @@
+{
+  "name": "ansible-dev",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces/ansible-dev",
+  "remoteUser": "root",
+  "updateRemoteUserUID": true,
+  "remoteEnv": {
+    "ANSIBLE_CONFIG": "/workspaces/ansible-dev/ansible.cfg"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.ansible",
+        "ms-azuretools.vscode-containers",
+        "charliermarsh.ruff",
+        "ms-vscode.powershell"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "files.associations": {
+          "*.yml": "ansible"
+        },
+        "yaml.customTags": [
+          "!vault scalar"
+        ],
+        "[python]": {
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+          },
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+      }
+    }
+  }
+}
