@@ -121,6 +121,8 @@
       "targets": [
         {
           "expr": "node_openwrt_info{instance=~\"$node:$port\",job=~\"$job\"}",
+          "format": "table",
+          "instant": true,
           "legendFormat": "",
           "refId": "A"
         }
@@ -178,6 +180,8 @@
       "targets": [
         {
           "expr": "node_uname_info{instance=~\"$node:$port\",job=~\"$job\"}",
+          "format": "table",
+          "instant": true,
           "legendFormat": "",
           "refId": "A"
         }

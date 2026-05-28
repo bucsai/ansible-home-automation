@@ -21,6 +21,14 @@
     - Commit UCI changes
     - Restart Prometheus Exporter
 
+- name: Copy patched wifi.lua collector with MediaTek driver compatibility
+  ansible.builtin.copy:
+    src: wifi.lua
+    dest: /usr/lib/lua/prometheus-collectors/wifi.lua
+    mode: '0755'
+  notify:
+    - Restart Prometheus Exporter
+
 - name: Enable and start prometheus-node-exporter-lua service
   ansible.builtin.service:
     name: prometheus-node-exporter-lua
