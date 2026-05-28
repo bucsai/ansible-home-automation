@@ -5,7 +5,7 @@ This file contains context, guidelines, and rules for AI agents (including `agy`
 ## System Context & Environment
 
 1. **Host OS:** You are running on a Windows 11 Pro workstation.
-2. **Ansible Environment:** Ansible-related questions and tasks refer to a development environment running on the same host inside Docker on WSL2. Ansible CLI commands (e.g., `ansible-playbook`) can be run inside the container named `ansible-dev` as needed.
+2. **Ansible Environment:** Ansible-related questions and tasks refer to a development environment running on the same host inside Docker on WSL2. Ansible CLI commands (e.g., `ansible-playbook`) can be run inside the container named `ansible-home-lab` as needed.
 
 ## Ansible Guidelines
 
