@@ -1,0 +1,4 @@
+FROM grafana/grafana:latest
+COPY grafana_datasource.yaml /etc/grafana/provisioning/datasources/datasource.yml
+COPY grafana_dashboards.yaml /etc/grafana/provisioning/dashboards/dashboards.yml
+COPY dashboards/openwrt.json /etc/grafana/dashboards/openwrt.json

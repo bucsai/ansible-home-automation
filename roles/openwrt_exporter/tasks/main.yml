@@ -1,0 +1,28 @@
+---
+- name: Update opkg package cache
+  ansible.builtin.command: opkg update
+  changed_when: false
+
+- name: Install Prometheus exporter packages on OpenWrt
+  community.general.opkg:
+    name:
+      - prometheus-node-exporter-lua
+      - prometheus-node-exporter-lua-openwrt
+      - prometheus-node-exporter-lua-wifi
+      - prometheus-node-exporter-lua-wifi_stations
+      - prometheus-node-exporter-lua-nat_traffic
+      - prometheus-node-exporter-lua-netstat
+    state: present
+
+- name: Configure exporter to listen on LAN interface via uci
+  ansible.builtin.command: uci set prometheus-node-exporter-lua.main.listen_interface='lan'
+  changed_when: true
+  notify:
+    - Commit UCI changes
+    - Restart Prometheus Exporter
+
+- name: Enable and start prometheus-node-exporter-lua service
+  ansible.builtin.service:
+    name: prometheus-node-exporter-lua
+    enabled: true
+    state: started

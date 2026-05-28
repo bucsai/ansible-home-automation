@@ -1,0 +1,31 @@
+---
+- name: Configure Prometheus Exporters on OpenWrt Router
+  hosts: routers
+  gather_facts: false
+
+  pre_tasks:
+    - name: Check if Python and necessary libraries are installed on the router
+      ansible.builtin.raw: python3 -c "import codecs, urllib.request; codecs.lookup('idna'); print('ok')" || echo ""
+      register: python_check
+      changed_when: false
+
+    - name: Bootstrap Python on the router
+      ansible.builtin.raw: opkg update && opkg install python3
+      when: python_check.stdout | trim != "ok"
+      changed_when: true
+
+    - name: Gather facts now that Python is available
+      ansible.builtin.setup:
+
+  roles:
+    - openwrt_exporter
+
+- name: Start Prometheus and Grafana on Localhost
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Run docker compose to spin up Prometheus and Grafana
+      ansible.builtin.command:
+        cmd: docker compose up -d --build
+        chdir: "{{ playbook_dir }}/../monitoring"
+      changed_when: true
