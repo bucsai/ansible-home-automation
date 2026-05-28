@@ -1,22 +1,24 @@
+name: home-lab
+
 services:
-  devcontainer:
+  ansible:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ansible-dev
-    hostname: ansible-dev
+    container_name: ansible-home-lab
+    hostname: ansible-home-lab
     tty: true
     stdin_open: true
     privileged: true
     devices:
       - "/dev/fuse:/dev/fuse"
     volumes:
-      - ..:/workspaces/ansible-dev:cached
+      - ..:/workspaces/home-lab:cached
       - /var/run/docker.sock:/var/run/docker.sock:z
     networks:
-      - ansible-dev
+      - home-lab
 
 networks:
-  ansible-dev:
-    name: ansible-dev
+  home-lab:
+    name: home-lab
     driver: bridge
