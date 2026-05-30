@@ -1,12 +1,11 @@
 {
-  "name": "ansible",
   "dockerComposeFile": "docker-compose.yaml",
   "service": "ansible",
-  "workspaceFolder": "/workspaces/home-lab",
+  "workspaceFolder": "/workspaces/ansible",
   "remoteUser": "root",
   "updateRemoteUserUID": true,
   "remoteEnv": {
-    "ANSIBLE_CONFIG": "/workspaces/home-lab/ansible.cfg"
+    "ANSIBLE_CONFIG": "/workspaces/ansible/ansible.cfg"
   },
   "customizations": {
     "vscode": {
