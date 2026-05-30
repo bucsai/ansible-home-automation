@@ -1,6 +1,7 @@
 # Files to ignore when syncing updates from the template repository
-.templatesyncignore
-README.md
-ansible.cfg
+.devcontainer/docker-compose.yaml
 .devcontainer/requirements.txt
 .devcontainer/requirements.yml
+.templatesyncignore
+ansible.cfg
+README.md
