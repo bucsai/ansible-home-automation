@@ -1,0 +1,6 @@
+# Files to ignore when syncing updates from the template repository
+.templatesyncignore
+README.md
+ansible.cfg
+requirements.txt
+requirements.yml
