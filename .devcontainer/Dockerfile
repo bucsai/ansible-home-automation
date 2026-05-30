@@ -15,14 +15,14 @@ RUN curl -SL https://download.docker.com/linux/fedora/docker-ce.repo -o /etc/yum
     dnf clean all
 
 # Copy dependency files to cache Python/Ansible packages
-COPY requirements.txt requirements.yml /tmp/dependencies/
+COPY requirements.txt* requirements.yml* /tmp/dependencies/
 
 # Install Python requirements & Ansible Collections
-RUN pip install -r /tmp/dependencies/requirements.txt && \
-    ansible-galaxy install -r /tmp/dependencies/requirements.yml
+RUN if [ -s /tmp/dependencies/requirements.txt ]; then pip install -r /tmp/dependencies/requirements.txt; fi && \
+    if [ -s /tmp/dependencies/requirements.yml ]; then ansible-galaxy install -r /tmp/dependencies/requirements.yml; fi
 
 # Dynamically find and install requirements from the installed collections
-RUN if [ -d ~/.ansible/collections/ansible_collections ]; then \
+RUN if [ -d ~/.ansible/collections/ansible_collections ] && [ -s /tmp/dependencies/requirements.yml ]; then \
         grep -oE '\s*-\s*name:\s*[a-zA-Z0-9_.-]+' /tmp/dependencies/requirements.yml | awk '{print $NF}' | while read -r col; do \
             col_path=$(echo "$col" | tr '.' '/') && \
             req_file="$HOME/.ansible/collections/ansible_collections/$col_path/requirements.txt" && \
