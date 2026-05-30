@@ -2,5 +2,5 @@
 .templatesyncignore
 README.md
 ansible.cfg
-requirements.txt
-requirements.yml
+.devcontainer/requirements.txt
+.devcontainer/requirements.yml
