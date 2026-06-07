@@ -6,10 +6,12 @@ ARG POWERSHELL_VERSION=7.6.2
 
 RUN curl -SL https://download.docker.com/linux/fedora/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo && \
     sed -i 's/\$releasever/'"${FEDORA_VERSION}"'/g' /etc/yum.repos.d/docker-ce.repo && \
+    curl -fsSL https://rpm.releases.hashicorp.com/fedora/hashicorp.repo -o /etc/yum.repos.d/hashicorp.repo && \
     dnf install -y --nogpgcheck \
         docker-ce-cli \
         docker-compose-plugin \
         iputils \
+        terraform \
         "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-1.rh.x86_64.rpm" && \
     dnf update -y && \
     dnf clean all
