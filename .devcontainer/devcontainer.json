@@ -13,7 +13,8 @@
         "redhat.ansible",
         "ms-azuretools.vscode-containers",
         "charliermarsh.ruff",
-        "ms-vscode.powershell"
+        "ms-vscode.powershell",
+        "hashicorp.terraform"
       ],
       "settings": {
         "files.eol": "\n",
